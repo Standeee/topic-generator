@@ -49,7 +49,7 @@
     <div class="uitslag">
       <pre>
 <code id="code">const {{ naam }} = {
-  "question": "{{ vraag }}"",
+  "question": "{{ vraag }}",
   "info": {
     "title": "Weetje",
     "segments": [{
@@ -59,7 +59,7 @@
   "images": {
     "yes": "{{ yesPath }}",
     {{ getPointer(yesPointer, true) }}
-    "no": "{{ noPath }}"
+    "no": "{{ noPath }}",
     {{ getPointer(noPointer, false) }}
   },
   "answerRoutes": [
