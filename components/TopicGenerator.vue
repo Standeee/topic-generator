@@ -26,8 +26,8 @@
         <div class="loading">
           <div id="bar" class="bar" />
         </div>
-        <h3 style="text-align: center; margin-top: 32px;">
-          Kadootjes laden...
+        <h3 style="text-align: center; margin-top: 32px; width: 200px;">
+          Dat is correct!<br>Jouw kadootjes worden geladen...
         </h3>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
   methods: {
     loading () {
       this.interval = setInterval(function () {
-        this.percent = this.percent + 1
+        this.percent = this.percent + 0.75
         document.getElementById('bar').style.width = this.percent + '%'
 
         if (this.percent > 100) {
