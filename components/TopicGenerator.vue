@@ -45,6 +45,9 @@ export default {
   mounted () {
     this.loading()
   },
+  beforeDestroy () {
+    clearInterval(this.interval)
+  },
   methods: {
     loading () {
       this.interval = setInterval(function () {
