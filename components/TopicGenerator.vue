@@ -120,15 +120,15 @@ h2 {
 }
 
 .image-1 {
-  width: 90%;
-  height: 100%;
+  width: 100%;
+  height: calc(100% - 64px);
   object-fit: contain;
   box-sizing: border-box;
 }
 
 .image-2 {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 52px);
   object-fit: contain;
   box-sizing: border-box;
 }
