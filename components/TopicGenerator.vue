@@ -10,11 +10,11 @@
       <div class="images">
         <div id="card-1" class="card">
           <img class="image-1" src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c9/b0/87/restaurant-de-beren.jpg">
-          <h1>Een leuk en lekker etentje bij de beren!</h1>
+          <h2>Een leuk en lekker etentje bij de beren!</h2>
         </div>
         <div id="card-2" class="card">
           <img class="image-2" src="https://www.escaperoomsnederland.nl/wp-content/uploads/2016/12/logo-algemeen.png">
-          <h1>Een uitdagene en gezellige escape room in Hoogeveen!</h1>
+          <h2>Een uitdagene en gezellige escape room in Hoogeveen!</h2>
         </div>
       </div>
       <div id="pageLoading" class="pageloading">
@@ -115,13 +115,21 @@ body, html, #__nuxt, #__layout {
   box-sizing: border-box;
 }
 
+h2 {
+  text-align: center;
+}
+
 .image-1 {
   width: 90%;
+  height: 100%;
+  object-fit: contain;
   box-sizing: border-box;
 }
 
 .image-2 {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
   box-sizing: border-box;
 }
 
