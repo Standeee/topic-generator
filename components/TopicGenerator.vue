@@ -1,97 +1,34 @@
 <template>
-  <div class="demo">
-    <div class="form">
-      <div>
-        <label for="naam">Const Naam</label>
-        <input v-model="naam" placeholder="naam">
+  <div style="height: 100%">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <div class="question">
+      <h1 id="congrats" class="congrats">
+        Gefeliciteerd :)
+      </h1>
+      <div class="images">
+        <div id="card-1" class="card">
+          <img class="image-1" src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c9/b0/87/restaurant-de-beren.jpg">
+          <h1>Een leuk en lekker etentje bij de beren!</h1>
+        </div>
+        <div id="card-2" class="card">
+          <img class="image-2" src="https://www.escaperoomsnederland.nl/wp-content/uploads/2016/12/logo-algemeen.png">
+          <h1>Een uitdagene en gezellige escape room in Hoogeveen!</h1>
+        </div>
       </div>
-      <div>
-        <label for="vraag">Vraag</label>
-        <input v-model="vraag" placeholder="vraag">
-      </div>
-      <div>
-        <label for="weetje">Weetje</label>
-        <input v-model="weetje" placeholder="weetje">
-      </div>
-      <div>
-        <label for="yesPath">Yes Image Path</label>
-        <input v-model="yesPath" placeholder="yesPath">
-      </div>
-      <div>
-        <label for="yesPointer">Yes Arrow (X Y Rotation)</label>
-        <input v-model="yesPointer" onClick="this.select();" placeholder="yesPointer">
-      </div>
-      <div>
-        <label for="noPath">No Image Path</label>
-        <input v-model="noPath" placeholder="noPath">
-      </div>
-      <div>
-        <label for="noPointer">No Arrow (X Y Rotation)</label>
-        <input v-model="noPointer" onClick="this.select();" placeholder="noPointer">
-      </div>
-      <div>
-        <label for="yesValue">Yes Value</label>
-        <input v-model="yesValue" onClick="this.select();" placeholder="yesValue">
-      </div>
-      <div>
-        <label for="noValue">No Value</label>
-        <input v-model="noValue" onClick="this.select();" placeholder="noValue">
-      </div>
-      <div>
-        <label for="yesAnswer">Yes Answer</label>
-        <input v-model="yesAnswer" placeholder="yesAnswer">
-      </div>
-      <div>
-        <label for="noAnswer">No Answer</label>
-        <input v-model="noAnswer" placeholder="noAnswer">
-      </div>
-    </div>
-    <div class="uitslag">
-      <pre>
-<code id="code">const {{ naam }} = {
-  "question": "{{ vraag }}",
-  "info": {
-    "title": "Weetje",
-    "segments": [{
-      "text": "{{ weetje }}"
-    }],
-  },
-  "images": {
-    "yes": "{{ yesPath }}",
-    {{ getPointer(yesPointer, true) }}
-    "no": "{{ noPath }}",
-    {{ getPointer(noPointer, false) }}
-  },
-  "answerRoutes": [
-    {
-      "title": "Ja",
-      "value": {{ yesValue }},
-    },
-    {
-      "title": "Nee",
-      "value": {{ noValue }},
-    }
-  ],
-  "yes": "{{ yesAnswer }}",
-  "no": "{{ noAnswer }}",
-}</code>
-      </pre>
-      <div class="tooltip">
-        <button class="copy" @click="copy()" @mouseout="copyOut()">
-          <span id="myTooltip" class="tooltiptext">Copy to clipboard</span>
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="copy"
-            class="svg-inline--fa fa-copy fa-w-14"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-          >
-            <path fill="currentColor" d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z" />
-          </svg>
-        </button>
+      <div id="pageLoading" class="pageloading">
+        <div class="gift">
+          <div class="cap" />
+          <div class="ribbon" />
+          <div class="ribbon" />
+        </div>
+        <div class="loading">
+          <div id="bar" class="bar" />
+        </div>
+        <h3 style="text-align: center; margin-top: 32px;">
+          Kadootjes laden...
+        </h3>
       </div>
     </div>
   </div>
@@ -101,165 +38,202 @@
 export default {
   data () {
     return {
-      naam: '',
-      vraag: '',
-      weetje: '',
-      yesPath: '',
-      yesPointer: '0 0 0',
-      noPath: '',
-      noPointer: '0 0 0',
-      yesValue: 1,
-      noValue: 3,
-      yesAnswer: '',
-      noAnswer: ''
+      percent: 0,
+      interval: ''
     }
   },
+  mounted () {
+    this.loading()
+  },
   methods: {
-    copy () {
-      const code = document.getElementById('code')
-      navigator.clipboard.writeText(code.innerHTML)
+    loading () {
+      this.interval = setInterval(function () {
+        this.percent = this.percent + 1
+        document.getElementById('bar').style.width = this.percent + '%'
 
-      const tooltip = document.getElementById('myTooltip')
-      tooltip.innerHTML = 'Copied to clipboard!'
-    },
-    copyOut () {
-      const tooltip = document.getElementById('myTooltip')
-      tooltip.innerHTML = 'Copy to clipboard'
-    },
-    getPointer (type, yes) {
-      const points = type.split(/(\s+)/).filter(function (e) {
-        return e.trim().length > 0
-      })
-
-      if (yes) {
-        return ('"yesPointerX": ' + points[0] + `, 
-    "yesPointerY": ` + points[1] + `,
-    "yesPointerRotation": ` + points[2] + ','
-        )
-      }
-
-      return ('"noPointerX": ' + points[0] + `, 
-    "noPointerY": ` + points[1] + `,
-    "noPointerRotation": ` + points[2] + ','
-      )
+        if (this.percent > 100) {
+          clearInterval(this.interval)
+          document.getElementById('pageLoading').className += ' complete'
+          document.getElementById('card-1').style.width = '100%'
+          document.getElementById('congrats').style.width = '100%'
+          document.getElementById('card-2').style.width = '100%'
+          document.getElementById('card-1').style.opacity = '1'
+          document.getElementById('congrats').style.opacity = '1'
+          document.getElementById('card-2').style.opacity = '1'
+        }
+      }.bind(this), 30)
     }
   }
 }
 </script>
 
 <style lang="css">
-.demo {
-  display: flex;
-  font-family: sans-serif;
-  border: 1px solid #eee;
-  border-radius: 2px;
-  padding: 20px 30px;
-  margin-top: 1em;
-  margin-bottom: 40px;
-  flex-direction: column;
-  align-items: center;
-}
 
-.form {
-  display: flex;
-  flex-direction: column;
-  min-width: 500px;
-}
-
-.form input {
-  margin: 5px 0;
-  width: 500px;
-}
-
-.form div {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.form div label {
-  display: inline-block;
-  margin-left: 24px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.uitslag {
-  margin-top: 24px;
-  position: relative;
+body, html, #__nuxt, #__layout {
   height: 100%;
-  min-width: 700px;
-}
-
-pre {
+  overflow: hidden;
+  font-family: 'Roboto';
   margin: 0;
-  padding: 13px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: rgb(236, 236, 236);
+}
+
+.congrats {
+  font-size: 28px;
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 12px;
-}
-
-code {
-  height: 100%;
-}
-
-.copy {
-  border: unset;
-  background-color: black;
+  background-color: red;
   color: white;
-  padding: 10px;
-  border-top-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  cursor: pointer;
-}
-
-.copy:hover {
-  background-color: rgb(41, 41, 41);
-}
-
-.copy svg {
-  width: 16px;
-  height: 16px;
-}
-
-.tooltip {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 110px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
+  padding: 8px;
+  width: 0%;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: all ease-in-out 0.25s;
 }
 
-.tooltip .tooltiptext::after {
-  content: "";
+.question {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+.image-1 {
+  width: 90%;
+  box-sizing: border-box;
 }
 
+.image-2 {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 45%;
+  width: 0%;
+  opacity: 0;
+  padding: 20px;
+  box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.32);
+  box-sizing: border-box;
+  transition: all ease-in-out 0.25s;
+}
+
+h1 {
+  text-align: center;
+}
+
+.gift {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    transform: translateY(120%);
+    margin: auto;
+    transition: 0.5s;
+}
+
+.cap {
+  width: calc(100% + 20px);
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: green;
+  transform: translate(-10px);
+  transform: rotate(-60deg);
+  transform-origin: left;
+}
+
+.ribbon {
+  width: 100%;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+  background-color: white;
+  transform: translate(0, -50%);
+}
+
+.ribbon:nth-last-child(1) {
+  z-index: 1;
+  transform: rotate(90deg) translate(-5px, 0);
+}
+
+.pageLoading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ccd5ae;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+.complete {
+  opacity: 0;
+}
+
+.complete .gift {
+  transform: scale(0.01) rotate(360deg);
+}
+
+  .gift {
+    animation: bounce 0.8s infinite alternate;
+    box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.1);
+    transform: translate(0);
+  }
+
+    .cap {
+      transform: rotate(0) translate(-10px);
+    }
+
+  @keyframes bounce {
+    50% {
+      top: 0;
+      box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.1);
+    }
+
+    100% {
+      top: -50px;
+      box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.1);
+    }
+  }
+
+  .loading {
+    width: 200px;
+    height: 8px;
+    margin-top: 80px;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.1);
+  }
+  .bar {
+      width: 0%;
+      height: 100%;
+      background-color: red;
+    }
 </style>
