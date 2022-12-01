@@ -14,7 +14,7 @@
         </div>
         <div id="card-2" class="card">
           <img class="image-2" src="https://www.escaperoomsnederland.nl/wp-content/uploads/2016/12/logo-algemeen.png">
-          <h2>Een uitdagene en gezellige escape room in Hoogeveen!</h2>
+          <h2>Een uitdagende en gezellige escape room in Hoogeveen!</h2>
         </div>
       </div>
       <div id="pageLoading" class="pageloading">
