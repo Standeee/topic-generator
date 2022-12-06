@@ -8,6 +8,10 @@
     <button @click="checkAnswer">
       Controleer
     </button>
+    <p>Hint: er zijn twee codes. Los eerst de kaart op.</p>
+    <p class="hint" @click="(hint = 'Kijk goed naar het whatsapp bericht van Stan')">
+      <small>{{ hint }}</small>
+    </p>
   </div>
 </template>
 
@@ -17,12 +21,17 @@ export default {
   data () {
     return {
       answer: '',
-      error: ' '
+      error: ' ',
+      hint: 'Klik hier om een hint voor de tweede code te openen'
     }
   },
   methods: {
     checkAnswer () {
-      if (this.answer.toLowerCase().replace(/\s/g, '') === 'mashapabien' || this.answer.toLowerCase().replace(/\s/g, '') === 'mashápabien') { this.$router.push('/gifts') } else { this.error = 'Jammer, dit is niet het goede antwoord. Probeer het opnieuw :)' }
+      if (this.answer.toLowerCase().replace(/\s/g, '') === 'mashapabien' || this.answer.toLowerCase().replace(/\s/g, '') === 'mashápabien') {
+        this.$router.push('/gifts')
+      } else if (this.answer.toLowerCase().replace(/\s/g, '') === 'niekstan' || this.answer.toLowerCase().replace(/\s/g, '') === 'stanniek') {
+        this.$router.push('/gift-niek-stan')
+      } else { this.error = 'Jammer, dit is niet het goede antwoord. Probeer het opnieuw :)' }
     }
   }
 }
@@ -35,6 +44,14 @@ body, html, #__nuxt, #__layout {
   font-family: 'Roboto';
   margin: 0;
 }
+
+.hint {
+  border-radius: 4px;
+  padding: 4px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .error {
   color: red;
   font-weight: 500;
