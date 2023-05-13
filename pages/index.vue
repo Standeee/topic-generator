@@ -75,7 +75,7 @@ export default {
     },
     openFirst () {
       if (!this.first) {
-        this.dialogTitle = 'Goede keuze!'
+        this.dialogTitle = 'Prima keuze!'
         this.dialogContent = 'Een gloed nieuwe IPad pro met Apple pencil speciaal voor jou.'
         this.closeBtn = false
         window.setTimeout(this.showMsgFirst, 3000) // Time before execution
@@ -102,7 +102,7 @@ export default {
         this.dialogContent = 'Wil je niet liever één van de andere cadeautjes?'
         this.open = true
       } else if (!this.third) {
-        this.dialogTitle = 'Goede keuze!'
+        this.dialogTitle = 'Wow goede keuze!'
         this.dialogContent = 'Wanneer je terug bent in Nederland gaan we lekker met z\'n drieën een wijnproeverij doen. De vorige keer ging het niet door, maar nu moet het lukken toch 😋🍷!'
         this.open = true
         this.third = true
