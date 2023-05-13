@@ -126,7 +126,7 @@ h2 {
   box-sizing: border-box;
 }
 
-.card {
+/* .card {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -137,7 +137,7 @@ h2 {
   box-shadow: 1px 1px 14px 6px rgba(0,0,0,0.32);
   box-sizing: border-box;
   transition: all ease-in-out 0.25s;
-}
+} */
 
 h1 {
   text-align: center;
