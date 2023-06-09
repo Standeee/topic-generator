@@ -35,7 +35,7 @@
     <div class="Picture">
       <img class="Picture-img" src="../static/IMG_0148.jpg" alt="">
       <div class="Picture-note">
-        <span>En zondag vieren we vieren het lekker met z'n allen</span>
+        <span>En zondag vieren we het lekker met z'n allen</span>
       </div>
     </div>
     <div class="Picture">
