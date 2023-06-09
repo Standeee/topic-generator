@@ -2,70 +2,64 @@
   <div class="Container">
     <!-- last card -->
     <div class="Picture">
-      <img class="Picture-img" src="https://media.licdn.com/dms/image/C4D03AQHjPuY9oi3Www/profile-displayphoto-shrink_800_800/0/1579768452204?e=2147483647&v=beta&t=4ZgTgOkSEu2eKRoLWEVtgL8s2zYu80YMxI_0018U9Dk" alt="">
+      <img class="Picture-img" src="https://media-cdn.tripadvisor.com/media/photo-s/27/7e/23/78/brass-boer-curacao.jpg" alt="">
       <div class="Picture-note">
-        <span>@DeyJordan - <a class="Network" href="https://codepen.io/DeyJordan" target="_top"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111501.png" alt="CodePen"></a><a class="Network" href="https://twitter.com/DeyJordan" target="_top"><img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png" alt="twitter"></a></span>
+        <span>Brass Boer 🤗</span>
       </div>
     </div>
     <!-- other cards -->
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/733/400" alt="">
+      <img class="Picture-img" src="../static/Screenshot 2023-06-09 210454.png" alt="">
       <div class="Picture-note">
-        <span>Over the clouds</span>
+        <span>Lekker eten bij 🍴</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/613/400" alt="">
+      <img class="Picture-img" src="../static/IMG_20210728_185134.jpg" alt="">
       <div class="Picture-note">
-        <span>Golden Gate Bridge - San Francisco</span>
+        <span>Dan gaan we met z'n tweeën 💝</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/40/400" alt="">
+      <img class="Picture-img" src="../static/IMG_20190815_164943.jpg" alt="">
       <div class="Picture-note">
-        <span>Cat nose</span>
+        <span>En als we weer terug zijn in Curacao 🛬</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/465/400" alt="">
+      <img class="Picture-img" src="../static/IMG_20210728_184938.jpg" alt="">
       <div class="Picture-note">
-        <span>Mountain</span>
+        <span>Met mooi weer 😎</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/1029/400" alt="">
+      <img class="Picture-img" src="../static/IMG_0148.jpg" alt="">
       <div class="Picture-note">
-        <span>Central Park - New York</span>
+        <span>En zondag vieren we vieren het lekker met z'n allen</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/923/400" alt="">
+      <img class="Picture-img" src="../static/IMG_20210715_183050.jpg" alt="">
       <div class="Picture-note">
-        <span>Autumn</span>
+        <span>We zullen op je proosten</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/425/400" alt="">
+      <img class="Picture-img" src="../static/IMG_1580.jpg" alt="">
       <div class="Picture-note">
-        <span>Coffee</span>
+        <span>Maak er vandaag een gezellige dag van</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/200/400" alt="">
+      <img class="Picture-img" src="https://lordicon.com/icons/wired/flat/1103-confetti.gif" alt="">
       <div class="Picture-note">
-        <span>An Irish cow enjoying the wind on the beach</span>
+        <span>Van harte gefeliciteerd!</span>
       </div>
     </div>
     <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/244/400" alt="">
+      <img class="Picture-img" src="https://media.istockphoto.com/id/1128262881/vector/decorative-black-gift-box-with-golden-bow-isolated-on-white.jpg?s=612x612&w=0&k=20&c=Gun3eVyEhbfOTJtGvANml18ARBAqWD8UObeallkbltc=" alt="">
       <div class="Picture-note">
-        <span>pelicans at the water's edge</span>
-      </div>
-    </div>
-    <div class="Picture">
-      <img class="Picture-img" src="https://picsum.photos/id/15/400" alt="">
-      <div class="Picture-note">
-        <span>Waterfall</span>
+        <span>Sleep de kaartjes weg 😁</span>
       </div>
     </div>
   </div>
@@ -74,18 +68,6 @@
 <script>
 export default {
   name: 'IndexPage',
-  data () {
-    return {
-      dialogTitle: '🎊Gefeliciteerd🎊',
-      dialogContent: 'Het is moederdag en krijgt een cadeautje van Niek en Stan. Sluit het dialoog en kies jouw cadeau!',
-      open: true,
-      first: false,
-      second: false,
-      third: false,
-      sure: true,
-      closeBtn: true
-    }
-  },
   mounted () {
     const pictures = document.querySelectorAll('.Picture')
     let previousTouch
@@ -139,60 +121,6 @@ export default {
       picture.addEventListener('mousedown', startFunction)
       picture.addEventListener('touchstart', startFunction)
     })
-  },
-  methods: {
-    close () {
-      this.open = false
-    },
-    openFirst () {
-      if (!this.first) {
-        this.dialogTitle = 'Prima keuze!'
-        this.dialogContent = 'Een gloed nieuwe IPad pro met Apple pencil speciaal voor jou.'
-        this.closeBtn = false
-        window.setTimeout(this.showMsgFirst, 3000) // Time before execution
-        this.open = true
-        this.first = true
-        this.sure = false
-      }
-    },
-    openSecond () {
-      if (!this.second) {
-        this.dialogTitle = 'Kijk is achter je...'
-        this.dialogContent = ''
-        this.closeBtn = false
-        window.setTimeout(this.showMsgSecond, 2000) // Time before execution
-        this.open = true
-        this.second = true
-        this.sure = false
-      }
-    },
-    openThird () {
-      if (this.sure) {
-        this.sure = false
-        this.dialogTitle = 'Zeker weten?'
-        this.dialogContent = 'Wil je niet liever één van de andere cadeautjes?'
-        this.open = true
-      } else if (!this.third) {
-        this.dialogTitle = 'Wow goede keuze!'
-        this.dialogContent = 'Wanneer je terug bent in Nederland gaan we lekker met z\'n drieën een wijnproeverij doen. De vorige keer ging het niet door, maar nu moet het lukken toch 😋🍷!'
-        this.open = true
-        this.third = true
-      }
-    },
-    showMsgSecond () {
-      this.dialogContent = 'Nee sorry, helaas moeten we nog werken en studeren. Was wel heel leuk geweest. Gelukkig zien we elkaar weer snel in NL 😁'
-      this.closeBtn = true
-    },
-    showMsgFirst () {
-      this.dialogTitle = 'Oh wacht.. 😅'
-      this.dialogContent = ''
-      window.setTimeout(this.showMsgFirstPart2, 2500) // Time before execution
-    },
-    showMsgFirstPart2 () {
-      this.dialogTitle = 'Oh wacht.. 😅'
-      this.dialogContent = 'Dit valt wel een beetje buiten ons budget. Kan je misschien één van de andere cadeautjes kiezen 😊'
-      this.closeBtn = true
-    }
   }
 }
 </script>
@@ -201,6 +129,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Caveat");
 
 body, html, #__nuxt, #__layout {
+  margin: 0;
+  font-family: 'Caveat', serif;
   overflow: hidden;
 }
 
@@ -232,6 +162,7 @@ body, html, #__nuxt, #__layout {
   display: block;
   width: 300px;
   height: 300px;
+  object-fit: contain;
   pointer-events: none;
 }
 
@@ -263,11 +194,5 @@ body, html, #__nuxt, #__layout {
 
 * {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Caveat', serif;
-  overflow: hidden;
 }
 </style>
